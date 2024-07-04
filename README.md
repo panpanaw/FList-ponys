@@ -33,6 +33,7 @@ test
 ### 获取方法
 #### AListToken
 <details>
+
 ![image](https://github.com/jianjianai/alist-github-releases-files/assets/59829816/8c333f66-4971-4b6e-9983-05b0389000a3)
 
 <details>
@@ -58,6 +59,7 @@ test
 
 ### AListStorageConfig.json
 AListApi,可以自己查询
+
 https://alist.nn.ci/zh/guide/api/admin/storage.html#post-%E6%9B%B4%E6%96%B0%E5%AD%98%E5%82%A8
 
 #### 驱动id获取
