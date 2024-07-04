@@ -1,9 +1,0 @@
-{
-  "AListUrl": "http://your.alist.url",
-  "owner": "jianjianai",
-  "name": "alist-github-releases-files",
-  "dir": {
-    "原": "test",
-    "test/原": "test.y"
-  }
-}

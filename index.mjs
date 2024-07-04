@@ -2,38 +2,32 @@ import { readFileSync } from 'fs';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-const args = process.argv.slice(2);
-if(args.length !== 1) {
-    throw "参数错误，正确示例: node index.mjs {AListToken}\n AListToken:AListToken设置里查看";
-}
-const AListToken = args[0];
+
+const {AListToken,AListUrl,Owner,Repository} = process.env;
+if (!AListToken)  throw '环境变量 AListToken 未定义!';
+if (!AListUrl)  throw '环境变量 AListUrl 未定义!';
+if (!Owner)  throw '环境变量 Owner 未定义!';
+if (!Repository)  throw '环境变量 Repository 未定义!';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const {owner,name,dir,AListUrl} = JSON.parse(readFileSync(`${__dirname}/filesConfig.json`,"utf8"));
 const AListStorageConfig = JSON.parse(readFileSync(`${__dirname}/AListStorageConfig.json`,"utf8"));
 
-async function getOneTag(tag){
-    console.log("tag:"+tag);
-    const tagInfo = await fetch(`https://api.github.com/repos/${owner}/${name}/releases/tags/${tag}`);
+async function getDirUrls(){
+    const tagInfo = await fetch(`https://api.github.com/repos/${Owner}/${Repository}/releases`);
     if(!tagInfo.ok){
         throw "请求错误：\n"+tagInfo.url+"\n"+tagInfo.statusText+"\n"+await tagInfo.text();
     }
-    const tagInfoData = await tagInfo.json();
-    const { assets } = tagInfoData;
-    const list = []
-    for(const {name,size,browser_download_url} of assets){
-        list.push(name+":"+size+":"+browser_download_url);
-        console.log(name+":"+size+":"+browser_download_url);
-    }
-    return list;
-}
-async function getDirUrls(uDir){
+    const releasesList = await tagInfo.json();
     const dirUrls = {};
-    for(const dirName in uDir){
-        const tag = uDir[dirName];
-        dirUrls[dirName] = await getOneTag(tag);
+    for(const releases of releasesList){
+        const {tag_name,assets} = releases;
+        const list = [];
+        for (const {name,size,browser_download_url} of assets){
+            list.push(`${name}:${size}:${browser_download_url}`);
+        }
+        dirUrls[tag_name] = list;
     }
     return dirUrls;
 }
@@ -81,7 +75,7 @@ async function updateAList(url_structure){
 }
 
 console.log("获取发行版信息...");
-const treeUrls = await getDirUrls(dir)
+const treeUrls = await getDirUrls()
 console.log("创建树配置...");
 const tree = toTree(treeUrls);
 console.log(tree);

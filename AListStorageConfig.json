@@ -1,6 +1,6 @@
 {
-  "id":0, 
-  "mount_path":"/", 
+  "id":0,
+  "mount_path":"/GithubReleases",
   "driver":"UrlTree",
   "status":"work",
   "remark":"", 
