@@ -2,11 +2,14 @@
 当 GitHub Releases 更新时，自动获取 Github Releases 中的文件，生成地址树并更新 AList 驱动。只需Fork本仓库后简单设置就可以实现此功能了。
 
 ## 环境变量
-- ```ALISTTOKEN``` AList token 令牌
+| 名称         | 作用                                     |
+|------------|----------------------------------------|
+| AListToken | AList token 令牌 可在alist设置中查看            |
+| AListUrl   | 你的 AList 网盘链接 例如:https://you.alist.com |
 
+### 获取方法
+#### AListToken
 <details>
-<summary>获取方法</summary>
-  
 ![image](https://github.com/jianjianai/alist-github-releases-files/assets/59829816/8c333f66-4971-4b6e-9983-05b0389000a3)
 
 <details>
@@ -17,8 +20,9 @@
 
 </details>
 
+
+### 设置环境变量方法
 <details>
-<summary>设置方法</summary>
 
 ![image](https://github.com/jianjianai/alist-github-releases-files/assets/59829816/e5898202-0bdc-4f83-8192-871f0e94ff01)
 
@@ -28,18 +32,6 @@
 
 
 ## 配置文件
-### filesConfig.json
-这个配置仓库和文件夹的映射简单，就不教了。
-``` javascript
-{
-  "owner": "jianjianai", //仓库所有者
-  "name": "alist-files", //仓库名称
-  "dir": {  //文件夹名称和 Releases tag 映射
-    "原": "2024.7.4.11.08",
-    "test/原": "2024.7.4.11.08"
-  }
-}
-```
 
 ### AListStorageConfig.json
 AListApi,可以自己查询
