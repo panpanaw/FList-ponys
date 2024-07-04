@@ -26,7 +26,7 @@
 这个配置仓库和文件夹的映射简单，就不教了。
 ``` javascript
 {
-  "owner": "panpanaw", //仓库所有者
+  "owner": "jianjianai", //仓库所有者
   "name": "alist-files", //仓库名称
   "dir": {  //文件夹名称和 Releases tag 映射
     "原": "2024.7.4.11.08",
