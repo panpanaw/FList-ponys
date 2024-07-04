@@ -18,4 +18,9 @@ jobs:
         with:
           node-version: 20
       - run: npm install
-      - run: node index.mjs ${{ secrets.ALISTTOKEN }}
+      - run: node index.mjs
+        env:
+          AListToken: ${{ secrets.AListToken }}
+          AListUrl: ${{ secrets.AListUrl }}
+          Owner: ${{ github.repository_owner }}
+          Repository: ${{ github.event.repository.name }}
