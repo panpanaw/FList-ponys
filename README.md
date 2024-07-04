@@ -59,7 +59,7 @@ https://alist.nn.ci/zh/guide/api/admin/storage.html#post-%E6%9B%B4%E6%96%B0%E5%A
   "order_by":"",
   "order_direction":"",
   "extract_folder":"",
-  "web_proxy":false,
+  "web_proxy":false, //是否开启下载代理
   "down_proxy_url":"", //下载代理url
   "addition": {
     "head_size":false
