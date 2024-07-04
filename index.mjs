@@ -20,35 +20,55 @@ async function getDirUrls(){
         throw "请求错误：\n"+tagInfo.url+"\n"+tagInfo.statusText+"\n"+await tagInfo.text();
     }
     const releasesList = await tagInfo.json();
-    const dirUrls = {};
+    const list = [];
     for(const releases of releasesList){
         const {tag_name,assets} = releases;
-        const list = [];
         for (const {name,size,browser_download_url} of assets){
-            list.push(`${name}:${size}:${browser_download_url}`);
+            list.push({path:tag_name+"/"+name,url:browser_download_url,size});
         }
-        dirUrls[tag_name] = list;
     }
-    return dirUrls;
+    return list;
 }
 function toTree(dirUrls){
-    let rs = "";
-    for(const dirName in dirUrls) {
-        const urls = dirUrls[dirName];
-        const trees = dirName.split("/");
-        let treeString = ``;
-        let left = '';
-        for (const treeName of trees) {
-            treeString += left + treeName + ":\n";
-            left += `  `;
+    function addToObj(obj,path,url,size){
+        const theIndex = path.indexOf("/");
+        if(theIndex<0){
+            obj[path] = `:${size}:${url}`;
+            return;
         }
-        for (const url of urls) {
-            treeString += left + url + "\n";
+        const left = path.substring(0,theIndex)
+        const right = path.substring(theIndex+1);
+        if(!obj[left]){
+            obj[left] = {};
         }
-        rs += treeString;
+        addToObj(obj[left],right,url,size);
     }
-    return rs;
+    const fileobj = {};
+    for(const {path,url,size} of dirUrls){
+        addToObj(fileobj,path,url,size);
+    }
+    function getTree(left,treeObj){
+        let leftString = ``
+        for(let i=0;i<left;i++){
+            leftString += '  ';
+        }
+        let treeString = '';
+        for(const key in treeObj){
+            const value = treeObj[key];
+            if((typeof value)=="string"){
+                treeString += leftString+key+value+'\n';
+            }else if(left===0 && key==="root"){
+                treeString += getTree(left,value);
+            } else{
+                treeString += leftString+key+':\n'
+                treeString += getTree(left+1,value);
+            }
+        }
+        return treeString;
+    }
+    return getTree(0,fileobj);
 }
+
 async function updateAList(url_structure){
     const res = await fetch(`${AListUrl}/api/admin/storage/update`, {
         method: 'POST',
