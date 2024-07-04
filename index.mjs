@@ -11,7 +11,7 @@ const AListToken = args[0];
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const {owner,name,dir} = JSON.parse(readFileSync(`${__dirname}/filesConfig.json`,"utf8"));
+const {owner,name,dir,AListUrl} = JSON.parse(readFileSync(`${__dirname}/filesConfig.json`,"utf8"));
 const AListStorageConfig = JSON.parse(readFileSync(`${__dirname}/AListStorageConfig.json`,"utf8"));
 
 async function getOneTag(tag){
@@ -56,7 +56,7 @@ function toTree(dirUrls){
     return rs;
 }
 async function updateAList(url_structure){
-    const res = await fetch(`https://alist.jjaw.cn/api/admin/storage/update`, {
+    const res = await fetch(`${AListUrl}/api/admin/storage/update`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
