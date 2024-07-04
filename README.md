@@ -9,6 +9,12 @@
   
 ![image](https://github.com/jianjianai/alist-github-releases-files/assets/59829816/8c333f66-4971-4b6e-9983-05b0389000a3)
 
+<details>
+
+- [神奇小破站](https://jjaw.cn/)
+
+</details>
+
 </details>
 
 <details>
