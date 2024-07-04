@@ -1,8 +1,8 @@
 {
-  "owner": "panpanaw",
-  "name": "alist-files",
+  "owner": "jianjianai",
+  "name": "alist-github-releases-files",
   "dir": {
-    "原": "2024.7.4.11.08",
-    "test/原": "2024.7.4.11.08"
+    "原": "test",
+    "test/原": "test.y"
   }
 }

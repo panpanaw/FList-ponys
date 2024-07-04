@@ -1,1 +1,15 @@
+on:
+  release:
+    types: [edited]
+  workflow_dispatch:
 
+jobs:
+  name: update-alist - 更新到alist
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+    - run: npm install
+    - run: node index.mjs ${{ env.ALISTTOKEN }}
