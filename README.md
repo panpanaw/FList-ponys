@@ -4,7 +4,7 @@
 ## 功能描述
 将文件上传到 Releases(发行版) 上 Actions 就会自动运行并生成 AList 地址树，并自动更新到配置的网盘上。
 
-文件夹按照 tag 名称生成 例:
+文件夹按照 tag 名称生成 如果tag名称为 ```root``` 则文件放在根目录 例:
 
 tag名称：1.1.2
 ``` text
@@ -21,6 +21,13 @@ test
     xxx:xxx:http://xxx
     xxx:xxx:http://xxx
     ...
+```
+
+tag名称：root
+``` text
+xxx:xxx:http://xxx
+xxx:xxx:http://xxx
+...
 ```
 
 
