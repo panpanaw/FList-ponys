@@ -3,7 +3,6 @@ run-name: ${{ github.actor }} -> update-alist - 更新到alist
 
 on:
   release:
-    types: [edited]
   workflow_dispatch:
 
 jobs:
