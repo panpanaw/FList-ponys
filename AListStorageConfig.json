@@ -1,12 +1,12 @@
 {
-  "id":4,
-  "mount_path":"/yyy",
+  "id":0,
+  "mount_path":"/",
   "order":0,
   "driver":"UrlTree",
   "cache_expiration":0,
   "status":"work",
   "remark":"",
-  "modified":"2024-07-04T08:07:01.183+02:00",
+  "modified":"",
   "disabled":false,
   "enable_sign":false,
   "order_by":"",
@@ -15,7 +15,7 @@
   "web_proxy":true,
   "webdav_policy":"302_redirect",
   "proxy_range":false,
-  "down_proxy_url":"https://alist.jjaw.cn/proxy/3c8322fe",
+  "down_proxy_url":"",
   "addition": {
     "head_size":false
   }
