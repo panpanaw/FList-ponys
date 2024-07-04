@@ -1,6 +1,29 @@
 # alist-github-releases-files
 当 GitHub Releases 更新时，自动获取 Github Releases 中的文件，生成地址树并更新 AList 驱动。只需Fork本仓库后简单设置就可以实现此功能了。
 
+## 功能描述
+将文件上传到 Releases(发行版) 上 Actions 就会自动运行并生成 AList 地址树，并自动更新到配置的网盘上。
+
+文件夹按照 tag 名称生成 例:
+
+tag名称：1.1.2
+``` text
+1.1.2
+  xxx:xxx:http://xxx
+  xxx:xxx:http://xxx
+  ...
+```
+
+tag名称：test/test2
+``` text
+test
+  test2
+    xxx:xxx:http://xxx
+    xxx:xxx:http://xxx
+    ...
+```
+
+
 ## 环境变量
 | 名称         | 作用                                     |
 |------------|----------------------------------------|
